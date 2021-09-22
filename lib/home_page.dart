@@ -19,13 +19,13 @@ class HomePage extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.70,
             margin: EdgeInsets.all(14),
             decoration: BoxDecoration(
-              color: Colors.grey[300],
+              color: myCounter.counterColor,
               borderRadius: BorderRadius.circular(15.0),
             ),
             child: Center(
               child: Text(
                 myCounter.counterVal.toString(),
-                style: TextStyle(fontSize: 72),
+                style: TextStyle(fontSize: 72, color: Colors.grey[200]),
               ),
             ),
           ),
@@ -38,7 +38,9 @@ class HomePage extends StatelessWidget {
                   style: TextStyle(color: Colors.grey[200]),
                 ),
                 color: Colors.black87,
-                onPressed: () {},
+                onPressed: () {
+                  myCounter.setColor(Colors.black);
+                },
               ),
               MaterialButton(
                 child: Text(
@@ -46,7 +48,9 @@ class HomePage extends StatelessWidget {
                   style: TextStyle(color: Colors.grey[200]),
                 ),
                 color: Colors.red,
-                onPressed: () {},
+                onPressed: () {
+                  myCounter.setColor(Colors.red);
+                },
               ),
               MaterialButton(
                 child: Text(
@@ -54,7 +58,9 @@ class HomePage extends StatelessWidget {
                   style: TextStyle(color: Colors.grey[200]),
                 ),
                 color: Colors.blue,
-                onPressed: () {},
+                onPressed: () {
+                  myCounter.setColor(Colors.blue);
+                },
               ),
               MaterialButton(
                 child: Text(
@@ -62,7 +68,9 @@ class HomePage extends StatelessWidget {
                   style: TextStyle(color: Colors.grey[200]),
                 ),
                 color: Colors.green,
-                onPressed: () {},
+                onPressed: () {
+                  myCounter.setColor(Colors.green);
+                },
               ),
             ],
           ),

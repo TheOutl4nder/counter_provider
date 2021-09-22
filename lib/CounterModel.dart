@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class CounterModel with ChangeNotifier{
   int counterVal=0;
@@ -16,6 +17,12 @@ class CounterModel with ChangeNotifier{
 
   void reset(){
     counterVal = 0;
+    counterColor = Colors.grey;
+    notifyListeners();
+  }
+
+  void setColor(Color color){
+    counterColor =  color;
     notifyListeners();
   }
 }
