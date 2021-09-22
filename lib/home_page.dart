@@ -1,11 +1,28 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, avoid_unnecessary_containers
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class CounterModel extends ChangeNotifier{
+  int counterVal=0;
+  Color counterColor;
+
+  CounterModel(this.counterColor);
+
+  void add(bool up){
+    if(up)
+      counterVal++;
+    else
+      counterVal--;
+    notifyListeners();
+  }
+}
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final counterModel = context.watch<CounterModel>();
     return Scaffold(
       appBar: AppBar(
         title: Text("Contador v2.0"),
