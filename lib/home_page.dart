@@ -1,28 +1,14 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, avoid_unnecessary_containers
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-class CounterModel extends ChangeNotifier{
-  int counterVal=0;
-  Color counterColor;
-
-  CounterModel(this.counterColor);
-
-  void add(bool up){
-    if(up)
-      counterVal++;
-    else
-      counterVal--;
-    notifyListeners();
-  }
-}
+import 'package:provider/provider.dart';
+import 'CounterModel.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final counterModel = context.watch<CounterModel>();
+    final myCounter =  Provider.of<CounterModel>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("Contador v2.0"),
@@ -38,7 +24,7 @@ class HomePage extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                "0",
+                myCounter.counterVal.toString(),
                 style: TextStyle(fontSize: 72),
               ),
             ),
@@ -91,7 +77,9 @@ class HomePage extends StatelessWidget {
                   tooltip: "Sumar 1 cuenta",
                   icon: Icon(Icons.add),
                   color: Colors.grey[200],
-                  onPressed: () {},
+                  onPressed: () {
+                    myCounter.add(true);
+                  },
                 ),
               ),
               CircleAvatar(
@@ -101,7 +89,9 @@ class HomePage extends StatelessWidget {
                   tooltip: "Restar 1 cuenta",
                   icon: Icon(Icons.remove),
                   color: Colors.grey[200],
-                  onPressed: () {},
+                  onPressed: () {
+                    myCounter.add(false);
+                  },
                 ),
               ),
               CircleAvatar(
@@ -111,7 +101,9 @@ class HomePage extends StatelessWidget {
                   tooltip: "Reiniciar cuenta",
                   icon: Icon(Icons.restart_alt),
                   color: Colors.grey[200],
-                  onPressed: () {},
+                  onPressed: () {
+                    myCounter.reset();
+                  },
                 ),
               ),
             ],
